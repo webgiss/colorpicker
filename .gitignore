@@ -1,0 +1,8 @@
+data/
+dist/
+dist-server/
+node_modules/
+src/server/config/*
+storybook-static
+package-lock.json
+yarn-error.log

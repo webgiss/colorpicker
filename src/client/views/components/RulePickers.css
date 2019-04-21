@@ -1,0 +1,11 @@
+.rulePickers > canvas {
+    display: block;
+}
+
+.rulePickers {
+    background-color: #808080;
+    margin: 1px solid black;
+    padding: 2px;
+    width: fit-content;
+    margin-bottom: 2px;
+}

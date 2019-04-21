@@ -1,0 +1,28 @@
+import React from 'react';
+
+import hot from '../components/utils/hot';
+
+import { Segment, Container } from 'semantic-ui-react';
+import TrianglePicker from '../containers/TrianglePicker';
+import TrianglePickerX from '../containers/TrianglePickerX';
+import RgbInfo from '../containers/RgbInfo';
+import RuleRgbPickers from './RuleRgbPickers';
+import RuleHcwbPickers from './RuleHcwbPickers';
+import RuleHslPickers from './RuleHslPickers';
+import RuleHsvPickers from './RuleHsvPickers';
+
+import './ColorPage.css'
+
+const ColorPage = () =>
+    <Container>
+        <Segment inverted>
+            <RgbInfo />
+            <TrianglePicker />
+            <RuleRgbPickers />
+            <RuleHcwbPickers />
+            <RuleHslPickers />
+            <RuleHsvPickers />
+        </Segment>
+    </Container>
+
+export default hot(module, ColorPage);

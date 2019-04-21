@@ -1,0 +1,23 @@
+.rulePickerLabel {
+    display: block;
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rulePickerLabelLabel ,
+.rulePickerLabelName {
+    display: inline;
+    font-size: 9px;
+    vertical-align:3px;
+    font-weight: bold;
+    overflow: hidden;
+}
+.rulePickerLabelLabel {
+    margin: 0 5px;
+}
+
+.rulePickerLabelName {
+    margin-left: 5px;
+}

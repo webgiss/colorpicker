@@ -1,0 +1,18 @@
+.rgbInfo {
+    color: #ffffff;
+}
+
+.selectedInput {
+    width: 404px;
+}
+
+.ui.input.selectedInput>input {
+    background: #404040;
+    color: white;
+    font-weight: bold;
+}
+
+.ui.input.selectedInput>input::selection {
+    background-color: rgba(155,155,155,.4);
+    color: rgba(255,255,255,.87);
+}
