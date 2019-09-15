@@ -7,7 +7,7 @@ const MapStateToProps = (state) => {
     let hcwb = state.colors.colorInfo.hcwb;
     return {
         width: 300,
-        height: 15,
+        height: 12,
         margin: 2,
         name: 'w',
         data: hcwb,

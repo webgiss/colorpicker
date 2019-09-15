@@ -10,8 +10,9 @@
 .rulePickerLabelName {
     display: inline;
     font-size: 9px;
-    vertical-align:3px;
+    vertical-align:4px;
     font-weight: bold;
+    line-height: 12px;
     overflow: hidden;
 }
 .rulePickerLabelLabel {

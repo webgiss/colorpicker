@@ -17,7 +17,7 @@ const ColorPage = () =>
     <Container>
         <Segment inverted>
             <RgbInfo />
-            <TrianglePicker />
+            <TrianglePicker className='trianglePicker' />
             <RuleRgbPickers />
             <RuleHcwbPickers />
             <RuleHslPickers />

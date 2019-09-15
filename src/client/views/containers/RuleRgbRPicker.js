@@ -6,7 +6,7 @@ const MapStateToProps = (state) => {
     let rgb = state.colors.colorInfo.rgb;
     return {
         width: 300,
-        height: 15,
+        height: 12,
         margin: 2,
         name: 'R',
         lambda: rgb[0],

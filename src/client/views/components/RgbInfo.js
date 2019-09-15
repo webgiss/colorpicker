@@ -53,7 +53,7 @@ const RgbInfo = ({ rgb, hcwb, hsl, hsv, color }) => {
 			&nbsp;
             -
 			&nbsp;
-            <CopyToClipboard text={`hcwb(${hcwb[0]},${hcwb[1]},${hcwb[2]},${hcwb[3]})`}>
+            <CopyToClipboard text={`hcwb(${hcwb[0]},${hcwb[1]}%,${hcwb[2]}%,${hcwb[3]}%)`}>
                 <span className='toClipboard'>hcwb(<ColorComponent value={hcwb[0]} />, <ColorComponent value={hcwb[1]} />%, <ColorComponent value={hcwb[2]} />%, <ColorComponent value={hcwb[3]} />%)</span>
             </CopyToClipboard>
 			&nbsp;

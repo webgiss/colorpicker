@@ -7,7 +7,7 @@ const MapStateToProps = (state) => {
     let hsl = state.colors.colorInfo.hsl;
     return {
         width: 300,
-        height: 15,
+        height: 12,
         margin: 2,
         name: 'hsl:l',
         data: hsl,

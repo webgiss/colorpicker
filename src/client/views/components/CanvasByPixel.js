@@ -104,7 +104,7 @@ class CanvasByPixel extends React.Component {
     }
 
     render() {
-        return <canvas ref='canvas' onClick={(e) => this.onClick(e)}></canvas>;
+        return <canvas className={this.props.className} ref='canvas' onClick={(e) => this.onClick(e)}></canvas>;
     }
 }
 

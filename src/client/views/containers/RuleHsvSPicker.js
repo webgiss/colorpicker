@@ -7,7 +7,7 @@ const MapStateToProps = (state) => {
     let hsv = state.colors.colorInfo.hsv;
     return {
         width: 300,
-        height: 15,
+        height: 12,
         margin: 2,
         name: 'hsv:s',
         data: hsv,

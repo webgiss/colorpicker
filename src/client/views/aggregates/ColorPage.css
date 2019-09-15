@@ -5,3 +5,7 @@ body {
 .ui.inverted.segment, .ui.primary.inverted.segment {
     background-color: #000000;
 }
+
+.trianglePicker {
+    margin-left: 4px;
+}
