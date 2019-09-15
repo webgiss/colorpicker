@@ -2,6 +2,10 @@
     color: #ffffff;
 }
 
+.toClipboard {
+    cursor: copy;
+}
+
 .selectedInput {
     width: 404px;
 }
