@@ -2,9 +2,11 @@ import router from '../router';
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
+import init from '../init';
 
 export default (app, config) => {
     app.use(router);
+    init();
 
     const files = [['','index.html']];
     const distDir = path.join(__dirname, '..', '..', '..', 'dist');

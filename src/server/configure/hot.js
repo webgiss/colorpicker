@@ -17,13 +17,16 @@ export default (app, config) => {
     // Include server routes as a middleware
     app.use((req, res, next) => require('../router').default(req, res, next));
 
+    const init = require('../init');
+    init.default();
+    
     // Do "hot-reloading" of express stuff on the server
     // Throw away cached modules and re-require next time
     // Ensure there's no important state in there!
     const watcher = chokidar.watch('./src/server');
 
     const regexpCache = {};
-    const getPathMatch = name => {
+    const getPathMatch = (name) => {
         if (regexpCache[name] !== undefined) {
             return regexpCache[name];
         }
@@ -40,7 +43,11 @@ export default (app, config) => {
         });
     };
 
-    watcher.on('ready', () => watcher.on('all', () => clearRequireCacheForPath('server')));
+    watcher.on('ready', () => watcher.on('all', () => {
+        clearRequireCacheForPath('server');
+        const init = require('../init');
+        init.default();
+    }));
 
     // Anything else gets passed to the client app's server rendering
     app.get('*', function (req, res, next) {

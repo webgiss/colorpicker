@@ -1,17 +1,17 @@
 import config from '../webpack.config';
 import express from 'express';
-import configureHot from './server/configure/hot';
-import configureProd from './server/configure/prod'
 import listenApplication from './server/listen';
 
 const app = express();
 
 if (config.mode === 'development') {
+    const configure = require('./server/configure/hot').default;
     console.log('Application is in development mode');
-    configureHot(app, config);
+    configure(app, config);
 } else {
+    const configure = require('./server/configure/prod').default;
     console.log('Application is in production mode');
-    configureProd(app, config);
+    configure(app, config);
 }
 
 listenApplication(app);
