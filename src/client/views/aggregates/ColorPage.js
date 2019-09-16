@@ -10,11 +10,13 @@ import RuleRgbPickers from './RuleRgbPickers';
 import RuleHcwbPickers from './RuleHcwbPickers';
 import RuleHslPickers from './RuleHslPickers';
 import RuleHsvPickers from './RuleHsvPickers';
+import HeadInfo from '../containers/HeadInfo';
 
 import './ColorPage.css'
 
 const ColorPage = () =>
     <Container>
+        <HeadInfo/>
         <Segment inverted>
             <RgbInfo />
             <TrianglePicker className='trianglePicker' />
