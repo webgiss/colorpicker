@@ -10,9 +10,7 @@ import configDao from './dao/config';
 import * as colors from './actions/colors';
 
 import DebugService from './service/debug';
-import StorageService from './service/storage';
 import ColorUrlService from './service/colorUrl';
-import ServiceWorkerService from './service/serviceWorker';
 
 Object.assign(actions, { colors });
 const reactReduxInit = new ReactReduxInit(initView, initRedux);
@@ -25,7 +23,6 @@ reactReduxInit.routes = Routes;
 [
     DebugService, 
     ColorUrlService,
-    ServiceWorkerService,
 ].map( (serviceClass) => new serviceClass(reactReduxInit) );
 
 reactReduxInit.init();
