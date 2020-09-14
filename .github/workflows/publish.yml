@@ -23,7 +23,7 @@ jobs:
 
       - name: Change base href
         if: success()
-        run: sed -i -e 's|base href=/ />|base href=/colorpicker/ />|' dist/index.html
+        run: sed -i -e 's|base href=/ />|base href=/colorpicker/ />|; s|./main.js|./main.js?x=$(date +s)|' dist/index.html
 
       - name: Deploy to GitHub Pages
         if: success()

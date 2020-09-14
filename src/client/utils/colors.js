@@ -379,7 +379,6 @@ export const hsvToRgb = ([h, s, v]) => {
 }
 
 export const hsvToHcwb = ([h, s, v]) => {
-    console.log({h, s, v})
     if (s === 0) {
         return [h, 0, v, 1 - v];
     } else {

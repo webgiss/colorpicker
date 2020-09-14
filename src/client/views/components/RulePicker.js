@@ -17,7 +17,7 @@ class RulePicker extends CanvasByPixel {
                     return null;
                 },
                 onClick: (values) => {
-                    console.log('RulePicker onClick', { ...values, data: this.props.data });
+                    // console.log('RulePicker onClick', { ...values, data: this.props.data });
                     return this.props.onClick({ ...values, data: this.props.data })
                 },
             },
