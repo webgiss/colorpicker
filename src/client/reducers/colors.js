@@ -24,6 +24,13 @@ const initialState = {
     },
 };
 
+const getHue = (state) => {
+    if (state && state.hcwb) {
+        return state.hcwb[0]
+    }
+    return 0
+}
+
 const getUrlFromSource = (source, color, rgb, hcwb, hsl, hsv) => {
     if (!source) {
         return '/';
@@ -67,6 +74,7 @@ const updateFromSource = (source) => {
     let hcwb = null;
     let hsl = null;
     let hsv = null;
+    let hue = source.hue;
 
     if (!source) {
         return { source: initialState.source, colorInfo: initialState.colorInfo };
@@ -74,9 +82,9 @@ const updateFromSource = (source) => {
 
     if (source.color) {
         rgb = colorToRgb(source.color);
-        hcwb = rgbToHcwb(rgb);
-        hsl = rgbToHsl(rgb);
-        hsv = rgbToHsv(rgb);
+        hcwb = rgbToHcwb(rgb, hue);
+        hsl = rgbToHsl(rgb, hue);
+        hsv = rgbToHsv(rgb, hue);
 
         let colorInfo = getColorInfo({ source, rgb, hcwb, hsl, hsv });
         return { source, colorInfo };
@@ -84,9 +92,9 @@ const updateFromSource = (source) => {
 
     if (source.rgb) {
         rgb = normalizeRgb(source.rgb);
-        hcwb = rgbToHcwb(rgb);
-        hsl = rgbToHsl(rgb);
-        hsv = rgbToHsv(rgb);
+        hcwb = rgbToHcwb(rgb, hue);
+        hsl = rgbToHsl(rgb, hue);
+        hsv = rgbToHsv(rgb, hue);
 
         let colorInfo = getColorInfo({ source, rgb, hcwb, hsl, hsv });
         return { source, colorInfo };
@@ -139,7 +147,8 @@ export default (state, action) => {
                             case 'rgb':
                                 {
                                     let newRgb = urlParts.slice(2).map((x) => Number.parseInt(x) / 255);
-                                    let { source, colorInfo } = updateFromSource({ rgb: newRgb });
+                                    let hue = getHue(state)
+                                    let { source, colorInfo } = updateFromSource({ rgb: newRgb, hue });
                                     state = { ...state, source, colorInfo };
                                     break;
                                 }
@@ -166,18 +175,20 @@ export default (state, action) => {
                                 }
                             case 'color':
                                 {
+                                    let hue = getHue(state)
                                     let color = urlParts[2];
-                                    let protoSource = { color };
+                                    let protoSource = { color, hue };
                                     let { source, colorInfo } = updateFromSource(protoSource);
                                     state = { ...state, source, colorInfo };
                                     break;
                                 }
                             default:
                                 {
+                                    let hue = getHue(state)
                                     let color = urlParts[1];
                                     let rgb = colorToRgb(color);
                                     if (rgb) {
-                                        let protoSource = { color };
+                                        let protoSource = { color, hue };
                                         let { source, colorInfo } = updateFromSource(protoSource);
                                         state = { ...state, source, colorInfo };
                                         break;
@@ -190,7 +201,8 @@ export default (state, action) => {
             }
         case SET_RGB:
             {
-                let protoSource = { rgb: action.rgb };
+                let hue = getHue(state)
+                let protoSource = { rgb: action.rgb, hue };
                 let { source, colorInfo } = updateFromSource(protoSource);
                 state = { ...state, source, colorInfo };
                 break;
@@ -204,7 +216,8 @@ export default (state, action) => {
             }
         case SET_CWB:
             {
-                let protoSource = { hcwb: [state.hcwb[0], ...action.cwb] };
+                let hue = getHue(state)
+                let protoSource = { hcwb: [hue, ...action.cwb] };
                 let { source, colorInfo } = updateFromSource(protoSource);
                 state = { ...state, source, colorInfo };
                 break;

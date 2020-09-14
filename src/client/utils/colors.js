@@ -51,11 +51,11 @@ export const hcwbToHsl = ([h, c, w, b]) => {
     if (z >= 1) {
         z = 2 - z;
     }
-    let s = c / z;
+    let s = (z !== 0) ? c / z : 0;
     return [h, s, l];
 }
 
-export const rgbToHsl = ([r, g, b]) => {
+export const rgbToHsl = ([r, g, b], hue) => {
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
     let h = null;
@@ -63,7 +63,8 @@ export const rgbToHsl = ([r, g, b]) => {
     let l = (max + min) / 2;
 
     if (max == min) {
-        h = s = 0; // achromatic
+        s = 0; // achromatic
+        h = hue || 0;
     } else {
         var d = max - min;
         if (l > 0.5) {
@@ -110,7 +111,7 @@ export const hslToRgb = ([h, s, l]) => {
     return [r, g, b];
 }
 
-export const rgbToHcwb = ([r, g, b], debug) => {
+export const rgbToHcwb = ([r, g, b], hue, debug) => {
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
     let h = null;
@@ -118,7 +119,7 @@ export const rgbToHcwb = ([r, g, b], debug) => {
     let w = min;
 
     if (c === 0) {
-        h = 0;
+        h = hue || 0;
     } else {
         switch (max) {
             case r: h = (g - b) / c + (g < b ? 6 : 0); break;
@@ -211,10 +212,6 @@ export const normalizeHcwb = (hcwb) => {
     hcwb = [0, 1, 2, 3].map(position => normalize01(hcwb[position]));
 
     let [h, c, w, b] = hcwb;
-
-    if (c === 0) {
-        h = 0;
-    }
 
     let s = c + b + w;
 
@@ -320,7 +317,7 @@ export const xyToRingHue = ([x, y, width, fmin, fmax, huebase], debug) => {
     return null;
 }
 
-export const rgbToHsv = ([r, g, b]) => {
+export const rgbToHsv = ([r, g, b], hue) => {
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
     let h = null;
@@ -329,7 +326,7 @@ export const rgbToHsv = ([r, g, b]) => {
     let d = max - min;
 
     if (d === 0) {
-        h = 0;
+        h = hue || 0;
         s = 0;
     } else {
         s = d / v;
@@ -347,7 +344,7 @@ export const rgbToHsv = ([r, g, b]) => {
 
 export const hcwbToHsv = ([h, c, w, b]) => {
     let v = c + w;
-    let s = c / v;
+    let s = (v !== 0) ? c / v : 0;
 
     return [h, s, v];
 }
@@ -356,7 +353,7 @@ export const hslToHsv = ([h, S, L]) => {
     let x = S * ((L <= 0.5) ? L : 1 - L);
 
     let v = (L + x);
-    let s = (2 * x) / (L + x);
+    let s = (v !== 0) ? (2 * x) / v : 0;
 
     return [h, s, v];
 }
@@ -398,7 +395,8 @@ export const hsvToHcwb = ([h, s, v]) => {
 
 export const hsvToHsl = ([h, s, v]) => {
     let x = (2 - s) * v;
-    let S = s * v / (x < 1 ? x : 2 - x);
+    let xx = x < 1 ? x : 2 - x;
+    let S = (v !== 0) ? (s * v / xx) : (s / (2 - s));
     let L = x / 2;
 
     return [h, S, L];
