@@ -1,6 +1,6 @@
 import React from 'react';
 import hot from './utils/hot';
-import { rgbToColor } from '../../utils/colors';
+import { rgbToColor, colorToRgb } from '../../utils/colors';
 
 class CanvasByPixel extends React.Component {
     constructor() {
@@ -81,6 +81,7 @@ class CanvasByPixel extends React.Component {
         let globalData = { ...this.props, ...this.globalData };
 
         let y = 0;
+        let id = context.getImageData(0, 0, 1, 1);
         while (y<height) {
             let x = 0;
             while (x<width) {
@@ -88,12 +89,16 @@ class CanvasByPixel extends React.Component {
                     let data = f(x, y, globalData);
                     if (data) {
                         let { c, rgb } = data;
-                        if (c === undefined && rgb !== undefined) {
-                            c = rgbToColor(rgb);
+                        if (rgb === undefined && c !== undefined) {
+                            rgb = colorToRgb(c);
                         }
-                        if (c !== undefined) {
-                            context.fillStyle = c;
-                            context.fillRect(x, y, 1, 1);
+                        if (rgb !== undefined) {
+                            id.data[0] = rgb[0]*255
+                            id.data[1] = rgb[1]*255
+                            id.data[2] = rgb[2]*255
+                            context.putImageData(id, x, y);
+                            // context.fillStyle = c;
+                            // context.fillRect(x, y, 1, 1);
                         }
                     }
                 });
