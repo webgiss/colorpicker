@@ -16,7 +16,7 @@ const MapStateToProps = (state) => {
 const MapDispatchToProps = (dispatch) => {
     return {
         onHueClick: ({ _h, _rgb }) => dispatch(actions.colors.setHue(_h)),
-        onColorClick: ({ c, _rgb }) => dispatch(actions.colors.setRgb(_rgb)),
+        onColorClick: ({ c, _hcwb }) => dispatch(actions.colors.setHcwb(_hcwb)),
     };
 };
 
