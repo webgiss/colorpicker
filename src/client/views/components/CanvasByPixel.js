@@ -61,7 +61,7 @@ class CanvasByPixel extends React.Component {
     updateCanvas() {
         let { width, height, background } = this;
         const canvas = this.refs.canvas;
-        const context = canvas.getContext('2d');
+        const context = canvas.getContext('2d', { willReadFrequently: true });
 
 
         if (canvas.width !== width) {
