@@ -4,7 +4,6 @@ import hot from '../components/utils/hot';
 
 import { Segment, Container } from 'semantic-ui-react';
 import TrianglePicker from '../containers/TrianglePicker';
-import TrianglePickerX from '../containers/TrianglePickerX';
 import RgbInfo from '../containers/RgbInfo';
 import RuleRgbPickers from './RuleRgbPickers';
 import RuleHcwbPickers from './RuleHcwbPickers';
